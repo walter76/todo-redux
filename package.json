@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "todo app for demo purpose",
   "license": "SEE LICENSE IN LICENSE",
-  "main": "index.js",
+  "main": "app/index.js",
   "scripts": {
     "lint:js": "standard",
     "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env development\"",
