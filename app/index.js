@@ -8,12 +8,6 @@ import App from './components/App'
 
 let store = createStore(todoApp)
 
-store.dispatch({
-  'type': 'ADD_TODO',
-  'id': 1,
-  'text': 'bla'
-})
-
 render(
   <Provider store={store}>
     <App />
