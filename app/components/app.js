@@ -2,7 +2,7 @@ import './app.scss'
 
 import React from 'react'
 
-import Footer from './Footer'
+import Footer from './footer'
 import VisibleTodoList from '../containers/visible-todo-list'
 import AddTodo from '../containers/add-todo'
 
