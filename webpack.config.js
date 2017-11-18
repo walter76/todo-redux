@@ -29,6 +29,10 @@ const commonConfig = merge([
           use: ['style-loader', 'css-loader']
         },
         {
+          test: /\.scss$/,
+          use: ['style-loader', 'css-loader', 'sass-loader']
+        },
+        {
           test: /\.jsx?$/,
           include: PATHS.app,
           exclude: /(node_modules|bower_components)/,
