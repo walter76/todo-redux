@@ -4,7 +4,7 @@ import React from 'react'
 
 import Footer from './Footer'
 import VisibleTodoList from '../containers/VisibleTodoList'
-import AddTodo from '../containers/AddTodo'
+import AddTodo from '../containers/add-todo'
 
 const App = () => (
   <article>

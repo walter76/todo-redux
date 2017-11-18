@@ -1,3 +1,5 @@
+import './add-todo.scss'
+
 import React from 'react'
 import { connect } from 'react-redux'
 import { addTodo } from '../actions'
@@ -6,7 +8,7 @@ let AddTodo = ({ dispatch }) => {
   let input
 
   return (
-    <div>
+    <section>
       <form
         onSubmit={e => {
           e.preventDefault()
@@ -21,12 +23,14 @@ let AddTodo = ({ dispatch }) => {
           ref={node => {
             input = node
           }}
+          placeholder='My Next ToDo Item'
+          autofocus
         />
         <button type='submit'>
           Add Todo
         </button>
       </form>
-    </div>
+    </section>
   )
 }
 AddTodo = connect()(AddTodo)
