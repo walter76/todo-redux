@@ -24,7 +24,7 @@ let AddTodo = ({ dispatch }) => {
             input = node
           }}
           placeholder='My Next ToDo Item'
-          autofocus
+          autoFocus
         />
         <button type='submit'>
           Add Todo

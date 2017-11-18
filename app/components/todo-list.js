@@ -1,13 +1,18 @@
+import './todo-list.scss'
+
 import React from 'react'
 import PropTypes from 'prop-types'
-import Todo from './Todo'
+import Todo from './todo'
 
 const TodoList = ({ todos, onTodoClick }) => (
-  <ul>
-    {todos.map(todo => (
-      <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} />
-    ))}
-  </ul>
+  <section>
+    <ul>
+      {todos.map(todo => (
+        <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} />
+      ))}
+    </ul>
+    <div className='hint'>*) Click on a item to cross it off your list.</div>
+  </section>
 )
 
 TodoList.propTypes = {

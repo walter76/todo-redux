@@ -1,0 +1,19 @@
+li {
+    font-size: 14px;
+
+    padding: 5px 2px;
+    margin: 0px;
+
+    border-bottom: solid #999 1px;
+
+    cursor: pointer;
+    cursor: hand;
+}
+
+li:last-of-type {
+    border: none;
+}
+
+li.completed {
+    textDecoration: line-through;
+}
