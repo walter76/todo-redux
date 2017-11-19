@@ -33,8 +33,6 @@ export function createTodosService () {
           return response.json()
         })
         .then((json) => {
-          console.table(json)
-
           resolve({
             'success': true,
             'items': json

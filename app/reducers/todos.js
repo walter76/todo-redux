@@ -15,6 +15,8 @@ const todos = (state = [], action) => {
           ? {'id': todo.id, 'text': todo.text, 'completed': !todo.completed}
           : todo
       )
+    case 'RECEIVE_TODOS':
+      return action.items
     default:
       return state
   }

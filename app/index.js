@@ -3,17 +3,22 @@ import './css/reset.css'
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunkMiddleware from 'redux-thunk'
 
 import todoApp from './reducers'
 import App from './components/app'
 
-import { createTodosService } from './reducers/todos.service'
+import { fetchTodos } from './actions'
 
-let store = createStore(todoApp)
+const store = createStore(
+  todoApp,
+  applyMiddleware(
+    thunkMiddleware
+  )
+)
 
-let todosService = createTodosService()
-todosService.getAll()
+store.dispatch(fetchTodos())
 
 render(
   <Provider store={store}>
