@@ -9,7 +9,7 @@ import thunkMiddleware from 'redux-thunk'
 import todoApp from './reducers'
 import App from './components/app'
 
-import { fetchTodos } from './actions'
+import { fetchTodos, createTodo } from './actions'
 
 const store = createStore(
   todoApp,
@@ -19,6 +19,8 @@ const store = createStore(
 )
 
 store.dispatch(fetchTodos())
+
+createTodo({'id': 42, 'text': 'test', 'completed': false})
 
 render(
   <Provider store={store}>

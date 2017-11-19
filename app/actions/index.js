@@ -1,6 +1,7 @@
 import { createTodosService } from './todos.service'
 
 let nextTodoId = 0
+let todosService = createTodosService()
 
 export const addTodo = text => {
   return {
@@ -33,7 +34,6 @@ export const receiveTodos = items => {
 
 export function fetchTodos () {
   return dispatch => {
-    let todosService = createTodosService()
     todosService.getAll()
     .then(({success, items}) => {
       // have to do something here
@@ -42,4 +42,8 @@ export function fetchTodos () {
       dispatch(receiveTodos(items))
     })
   }
+}
+
+export function createTodo (todo) {
+  todosService.create(todo)
 }

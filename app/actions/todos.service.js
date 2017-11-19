@@ -5,12 +5,11 @@ export function createTodosService () {
     '/api/todos'
 
   function getAll () {
-    let headers = new window.Headers()
-    headers.append('content-type', 'application/json; charset=utf-8')
-
     let options = {
       'method': 'GET',
-      'headers': headers,
+      'headers': {
+        'Content-Type': 'application/json; charset=utf-8'
+      },
       'cache': 'default'
     }
 
@@ -41,7 +40,19 @@ export function createTodosService () {
           })})})
   }
 
+  function create (todo) {
+    window.fetch(todosUri, {
+      'method': 'POST',
+      'headers': {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json; charset=utf-8'
+      },
+      'body': JSON.stringify(todo)
+    })
+  }
+
   return {
-    'getAll': getAll
+    'getAll': getAll,
+    'create': create
   }
 }
