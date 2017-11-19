@@ -1,4 +1,4 @@
-import { createTodosService } from '../reducers/todos.service'
+import { createTodosService } from './todos.service'
 
 let nextTodoId = 0
 

@@ -24,8 +24,10 @@ export function createTodosService () {
             console.log('status: ', response.status)
             console.log(response.statusText)
 
-            reject({
+            resolve({
               'success': false,
+              'status': response.status,
+              'statusText': response.statusText,
               'items': []
             })
           }
