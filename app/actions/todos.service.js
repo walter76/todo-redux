@@ -41,14 +41,20 @@ export function createTodosService () {
   }
 
   function create (todo) {
-    window.fetch(todosUri, {
-      'method': 'POST',
-      'headers': {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json; charset=utf-8'
-      },
-      'body': JSON.stringify(todo)
-    })
+    return new Promise(
+      (resolve, reject) => {
+        window.fetch(todosUri, {
+          'method': 'POST',
+          'headers': {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json; charset=utf-8'
+          },
+          'body': JSON.stringify(todo)
+        })
+        .then(response => response.json())
+        .then(json => resolve(json))
+      }
+    )
   }
 
   return {

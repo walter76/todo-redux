@@ -20,8 +20,6 @@ const store = createStore(
 
 store.dispatch(fetchTodos())
 
-createTodo({'id': 42, 'text': 'test', 'completed': false})
-
 render(
   <Provider store={store}>
     <App />

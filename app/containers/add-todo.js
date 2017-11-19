@@ -2,7 +2,7 @@ import './add-todo.scss'
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { addTodo } from '../actions'
+import { createTodo } from '../actions'
 
 let AddTodo = ({ dispatch }) => {
   let input
@@ -15,7 +15,7 @@ let AddTodo = ({ dispatch }) => {
           if (!input.value.trim()) {
             return
           }
-          dispatch(addTodo(input.value))
+          dispatch(createTodo(input.value))
           input.value = ''
         }}
       >

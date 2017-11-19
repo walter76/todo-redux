@@ -1,15 +1,6 @@
 import { createTodosService } from './todos.service'
 
-let nextTodoId = 0
 let todosService = createTodosService()
-
-export const addTodo = text => {
-  return {
-    'type': 'ADD_TODO',
-    'id': nextTodoId++,
-    text
-  }
-}
 
 export const setVisibilityFilter = filter => {
   return {
@@ -36,14 +27,29 @@ export function fetchTodos () {
   return dispatch => {
     todosService.getAll()
     .then(({success, items}) => {
-      // have to do something here
-      console.table(items)
-
       dispatch(receiveTodos(items))
     })
   }
 }
 
-export function createTodo (todo) {
-  todosService.create(todo)
+export const addTodo = todo => {
+  return {
+    'type': 'ADD_TODO',
+    'id': todo.id,
+    'text': todo.text,
+    'completed': todo.completed
+  }
+}
+
+export function createTodo (text) {
+  return dispatch => {
+    todosService.create({
+      'id': -1,
+      'text': text,
+      'completed': false
+    })
+    .then(todo => {
+      dispatch(addTodo(todo))
+    })
+  }
 }
