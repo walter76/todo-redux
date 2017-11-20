@@ -37,7 +37,9 @@ export function createTodosService () {
           resolve({
             'success': true,
             'items': json
-          })})})
+          })
+        })
+      })
   }
 
   function create (todo) {
