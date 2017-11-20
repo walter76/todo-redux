@@ -29,6 +29,26 @@ app.post('/api/todos', (req, res) => {
   res.json(todo)
 })
 
+app.put('/api/todos', (req, res) => {
+  todos = todos.map(todo => {
+    if (todo.id === req.body.id) {
+      return {
+        'id': todo.id,
+        'text': req.body.text,
+        'completed': req.body.completed
+      }
+    }
+
+    return todo
+  })
+
+  let updated = todos.find(todo => todo.id === req.body.id)
+
+  console.log('todo updated: ' + JSON.stringify(updated))
+
+  res.json(updated)
+})
+
 app
   .use(express.static(path.join(__dirname, 'public')))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))

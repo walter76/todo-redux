@@ -9,11 +9,9 @@ const todos = (state = [], action) => {
           'completed': action.completed
         }
       ]
-    case 'TOGGLE_TODO':
+    case 'TODO_UPDATED':
       return state.map(todo =>
-        (todo.id === action.id)
-          ? {'id': todo.id, 'text': todo.text, 'completed': !todo.completed}
-          : todo
+        (todo.id === action.todo.id) ? action.todo : todo
       )
     case 'RECEIVE_TODOS':
       return action.items

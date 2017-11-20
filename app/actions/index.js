@@ -9,10 +9,10 @@ export const setVisibilityFilter = filter => {
   }
 }
 
-export const toggleTodo = id => {
+export const todoUpdated = todo => {
   return {
-    'type': 'TOGGLE_TODO',
-    id
+    'type': 'TODO_UPDATED',
+    todo
   }
 }
 
@@ -50,6 +50,15 @@ export function createTodo (text) {
     })
     .then(todo => {
       dispatch(addTodo(todo))
+    })
+  }
+}
+
+export function updateTodo (todo) {
+  return dispatch => {
+    todosService.update(todo)
+    .then(todo => {
+      dispatch(todoUpdated(todo))
     })
   }
 }

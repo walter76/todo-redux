@@ -8,7 +8,7 @@ const TodoList = ({ todos, onTodoClick }) => (
   <section>
     <ul>
       {todos.map(todo => (
-        <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} />
+        <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo)} />
       ))}
     </ul>
     <div className='hint'>*) Click on a item to cross it off your list.</div>
