@@ -4,6 +4,8 @@ const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 
 const PORT = process.env.PORT || 5000
+const MONGODB_URI =
+  process.env.MONGODB_URI || 'mongodb://localhost:27017/ds-todo-db'
 
 let app = express()
 
@@ -69,7 +71,7 @@ app.put('/api/todos', (req, res) => {
   })
 })
 
-MongoClient.connect('mongodb://localhost:27017/ds-todo-db', (err, database) => {
+MongoClient.connect(MONGODB_URI, (err, database) => {
   if (err) {
     return console.log(err)
   }
