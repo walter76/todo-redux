@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "description": "todo app for demo purpose",
   "license": "SEE LICENSE IN LICENSE",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
     "lint:js": "standard",
-    "dev-server": "node index.js",
+    "dev-server": "node server/index.js",
     "dev-client": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env development\"",
     "build": "webpack --env production",
     "postinstall": "npm run build"
