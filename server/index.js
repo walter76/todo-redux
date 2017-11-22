@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
+const createTodoController = require('./todo-controller')
 
 const PORT = process.env.PORT || 5000
 const MONGODB_URI =
@@ -14,78 +15,13 @@ app.use(express.static(path.join(__dirname, '../public')))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ 'extended': true }))
 
-let db
-
-function generateUUID () {
-  let d = new Date().getTime()
-  let uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
-    let r = (d + Math.random() * 16) % 16 | 0
-    d = Math.floor(d / 16)
-    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16)
-  })
-  return uuid
-}
-
-app.get('/api/todos', (req, res, next) => {
-  db.collection('todos').find().toArray((err, results) => {
-    if (err) {
-      return console.log(err)
-    }
-
-    res.send(results.map(todo => {
-      return {
-        'id': todo.id,
-        'text': todo.text,
-        'completed': todo.completed
-      }
-    }))
-  })
-})
-
-app.post('/api/todos', (req, res) => {
-  let todo = {
-    'id': generateUUID(),
-    'text': req.body.text,
-    'completed': req.body.completed
-  }
-
-  db.collection('todos').insertOne(todo)
-  .then(r => {
-    console.log('saved to database')
-    console.log(JSON.stringify(r.ops))
-
-    res.json({
-      'id': r.ops[0].id,
-      'text': r.ops[0].text,
-      'completed': r.ops[0].completed
-    })
-  })
-})
-
-app.put('/api/todos', (req, res) => {
-  db.collection('todos').updateOne(
-    { 'id': req.body.id },
-    { $set: {
-      'text': req.body.text, 'completed': req.body.completed
-    }})
-  .then(r => {
-    db.collection('todos').findOne({'id': req.body.id})
-    .then(doc => {
-      res.json({
-        'id': doc.id,
-        'text': doc.text,
-        'completed': doc.completed
-      })
-    })
-  })
-})
-
 MongoClient.connect(MONGODB_URI, (err, database) => {
   if (err) {
     return console.log(err)
   }
 
-  db = database
+  let todoController = createTodoController(database)
+  todoController.registerRoutes(app)
 
   app.listen(PORT, () => console.log(`Listening on ${PORT}`))
 })
