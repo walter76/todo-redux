@@ -3,6 +3,7 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 const createTodoController = require('./todo-controller')
+const createUserController = require('./user-controller')
 
 const PORT = process.env.PORT || 5000
 const MONGODB_URI =
@@ -22,6 +23,9 @@ MongoClient.connect(MONGODB_URI, (err, database) => {
 
   let todoController = createTodoController(database)
   todoController.registerRoutes(app)
+
+  let userController = createUserController()
+  userController.registerRoutes(app)
 
   app.listen(PORT, () => console.log(`Listening on ${PORT}`))
 })
