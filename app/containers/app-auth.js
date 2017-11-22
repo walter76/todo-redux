@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { login } from '../actions'
+import { login, logout } from '../actions'
 import App from '../components/app'
 
 const mapStateToProps = (state, ownProps) => {
@@ -10,8 +10,11 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    'onClick': () => {
+    'onLogin': () => {
       dispatch(login())
+    },
+    'onLogout': () => {
+      dispatch(logout())
     }
   }
 }

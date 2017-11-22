@@ -6,14 +6,16 @@ import Footer from './footer'
 import VisibleTodoList from '../containers/visible-todo-list'
 import AddTodo from '../containers/add-todo'
 
-const App = ({ isLoggedIn, onClick }) => {
+const App = ({ isLoggedIn, onLogin, onLogout }) => {
+  console.log(isLoggedIn)
+
   if (!isLoggedIn) {
     return (
       <article>
         <h1>Dead-Simple ToDo App</h1>
         <button onClick={e => {
           e.preventDefault()
-          onClick()
+          onLogin()
         }}>Login</button>
       </article>
     )
@@ -25,6 +27,10 @@ const App = ({ isLoggedIn, onClick }) => {
       <AddTodo />
       <VisibleTodoList />
       <Footer />
+      <button onClick={e => {
+        e.preventDefault()
+        onLogout()
+      }}>Logout</button>
     </article>
   )
 }

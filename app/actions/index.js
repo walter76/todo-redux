@@ -15,6 +15,19 @@ export function login (credentials) {
   }
 }
 
+export const hasLoggedOut = () => {
+  return {
+    'type': 'HAS_LOGGED_OUT'
+  }
+}
+
+export function logout () {
+  return dispatch => {
+    window.sessionStorage.setItem('isLoggedIn', false)
+    dispatch(hasLoggedOut())
+  }
+}
+
 export const setVisibilityFilter = filter => {
   return {
     'type': 'SET_VISIBILITY_FILTER',
