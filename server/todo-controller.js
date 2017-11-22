@@ -11,19 +11,21 @@ function createTodoController (database) {
     return uuid
   }
 
+  function doc2todo (doc) {
+    return {
+      'id': doc.id,
+      'text': doc.text,
+      'completed': doc.completed
+    }
+  }
+
   function get (req, res, next) {
     db.collection('todos').find().toArray((err, results) => {
       if (err) {
         return console.log(err)
       }
 
-      res.send(results.map(todo => {
-        return {
-          'id': todo.id,
-          'text': todo.text,
-          'completed': todo.completed
-        }
-      }))
+      res.send(results.map(doc2todo))
     })
   }
 
@@ -39,11 +41,7 @@ function createTodoController (database) {
       console.log('saved to database')
       console.log(JSON.stringify(r.ops))
 
-      res.json({
-        'id': r.ops[0].id,
-        'text': r.ops[0].text,
-        'completed': r.ops[0].completed
-      })
+      res.json(doc2todo(r.ops[0]))
     })
   }
 
@@ -55,13 +53,7 @@ function createTodoController (database) {
       }})
     .then(r => {
       db.collection('todos').findOne({'id': req.body.id})
-      .then(doc => {
-        res.json({
-          'id': doc.id,
-          'text': doc.text,
-          'completed': doc.completed
-        })
-      })
+      .then(doc => res.json(doc2todo(doc)))
     })
   }
 
