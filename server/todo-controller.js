@@ -22,9 +22,16 @@ function createTodoController (database) {
   function get (req, res, next) {
     db.collection('todos').find().toArray((err, results) => {
       if (err) {
-        return console.log(err)
+        console.error('Unable to query database for todos. Reason: ')
+        console.error(err)
+
+        res.statusCode = 500
+        res.statusMessage = 'Unable to query database for todos.'
+        res.send()
+        return
       }
 
+      console.log('todos have been queried by the user.')
       res.send(results.map(doc2todo))
     })
   }
@@ -38,7 +45,7 @@ function createTodoController (database) {
 
     db.collection('todos').insertOne(todo)
     .then(r => {
-      console.log('saved to database')
+      console.log('a new todo has been saved to database: ')
       console.log(JSON.stringify(r.ops))
 
       res.json(doc2todo(r.ops[0]))
@@ -52,6 +59,8 @@ function createTodoController (database) {
         'text': req.body.text, 'completed': req.body.completed
       }})
     .then(r => {
+      console.log('the todo with id ' + req.body.id + ' was updated')
+
       db.collection('todos').findOne({'id': req.body.id})
       .then(doc => res.json(doc2todo(doc)))
     })
