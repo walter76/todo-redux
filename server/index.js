@@ -14,8 +14,17 @@ app.use(express.static(path.join(__dirname, '../public')))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ 'extended': true }))
 
-let nextId = 0
 let db
+
+function generateUUID () {
+  let d = new Date().getTime()
+  let uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+    let r = (d + Math.random() * 16) % 16 | 0
+    d = Math.floor(d / 16)
+    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16)
+  })
+  return uuid
+}
 
 app.get('/api/todos', (req, res, next) => {
   db.collection('todos').find().toArray((err, results) => {
@@ -35,7 +44,7 @@ app.get('/api/todos', (req, res, next) => {
 
 app.post('/api/todos', (req, res) => {
   let todo = {
-    'id': ++nextId,
+    'id': generateUUID(),
     'text': req.body.text,
     'completed': req.body.completed
   }
@@ -58,7 +67,7 @@ app.put('/api/todos', (req, res) => {
     { 'id': req.body.id },
     { $set: {
       'text': req.body.text, 'completed': req.body.completed
-  }})
+    }})
   .then(r => {
     db.collection('todos').findOne({'id': req.body.id})
     .then(doc => {
@@ -78,12 +87,5 @@ MongoClient.connect(MONGODB_URI, (err, database) => {
 
   db = database
 
-  // we need a better solution for the ids, especially if we are running multi-
-  // user, but for now this should do it
-  db.collection('todos').find().toArray((err, results) => {
-    results.forEach(todo => {
-      nextId = (todo.id > nextId) ? todo.id : nextId })
-  })
-
-  app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+  app.listen(PORT, () => console.log(`Listening on ${PORT}`))
 })
