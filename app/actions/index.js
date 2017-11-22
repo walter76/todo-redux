@@ -2,6 +2,19 @@ import { createTodosService } from './todos.service'
 
 let todosService = createTodosService()
 
+export const hasLoggedIn = () => {
+  return {
+    'type': 'HAS_LOGGED_IN'
+  }
+}
+
+export function login (credentials) {
+  return dispatch => {
+    window.sessionStorage.setItem('isLoggedIn', true)
+    dispatch(hasLoggedIn())
+  }
+}
+
 export const setVisibilityFilter = filter => {
   return {
     'type': 'SET_VISIBILITY_FILTER',

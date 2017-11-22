@@ -7,7 +7,7 @@ import { createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 
 import todoApp from './reducers'
-import App from './components/app'
+import AppAuth from './containers/app-auth'
 
 import { fetchTodos } from './actions'
 
@@ -22,7 +22,7 @@ store.dispatch(fetchTodos())
 
 render(
   <Provider store={store}>
-    <App />
+    <AppAuth />
   </Provider>,
   document.getElementById('app')
 )
