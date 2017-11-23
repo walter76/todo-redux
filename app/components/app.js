@@ -1,29 +1,25 @@
-import './app.scss'
-
 import React from 'react'
+import PropTypes from 'prop-types'
 
+import MainLayout from './main-layout'
 import Footer from './footer'
 import VisibleTodoList from '../containers/visible-todo-list'
 import AddTodo from '../containers/add-todo'
 
 const App = ({ isLoggedIn, onLogin, onLogout }) => {
-  console.log(isLoggedIn)
-
   if (!isLoggedIn) {
     return (
-      <article>
-        <h1>Dead-Simple ToDo App</h1>
+      <MainLayout>
         <button onClick={e => {
           e.preventDefault()
           onLogin()
         }}>Login</button>
-      </article>
+      </MainLayout>
     )
   }
 
   return (
-    <article>
-      <h1>Dead-Simple ToDo App</h1>
+    <MainLayout>
       <AddTodo />
       <VisibleTodoList />
       <Footer />
@@ -31,8 +27,14 @@ const App = ({ isLoggedIn, onLogin, onLogout }) => {
         e.preventDefault()
         onLogout()
       }}>Logout</button>
-    </article>
+    </MainLayout>
   )
+}
+
+App.propTypes = {
+  'isLoggedIn': PropTypes.bool.isRequired,
+  'onLogin': PropTypes.func.isRequired,
+  'onLogout': PropTypes.func.isRequired
 }
 
 export default App

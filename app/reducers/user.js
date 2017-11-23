@@ -1,8 +1,14 @@
 const user = (state, action) => {
   if (state === undefined) {
+    if (window.sessionStorage.getItem('isLoggedIn') === null) {
+      return {
+        'isLoggedIn': false
+      }
+    }
+
+    let isLoggedIn = window.sessionStorage.getItem('isLoggedIn') === 'true'
     return {
-      'isLoggedIn': (window.sessionStorage.getItem('isLoggedIn') === null)
-        ? false : window.sessionStorage.getItem('isLoggedIn')
+      'isLoggedIn': isLoggedIn
     }
   }
 
