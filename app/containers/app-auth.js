@@ -10,11 +10,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onLogin: () => {
-      dispatch(login({
-        username: 'demo',
-        password: 'secret'
-      }))
+    onLogin: (credentials) => {
+      dispatch(login(credentials))
     },
     onLogout: () => {
       dispatch(logout())

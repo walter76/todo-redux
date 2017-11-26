@@ -17,6 +17,7 @@ export function login (credentials) {
       if (isLoggedIn) {
         window.sessionStorage.setItem('isLoggedIn', true)
         dispatch(hasLoggedIn())
+        return
       }
 
       console.log('Could not login user.')
