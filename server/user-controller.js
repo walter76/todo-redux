@@ -1,7 +1,7 @@
 function createUserController () {
   const credentials = {
-    'username': 'demo',
-    'password': 'secret'
+    username: 'demo',
+    password: 'secret'
   }
 
   function login (req, res) {
@@ -22,7 +22,7 @@ function createUserController () {
   }
 
   return {
-    'registerRoutes': registerRoutes
+    registerRoutes: registerRoutes
   }
 }
 

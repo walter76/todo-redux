@@ -13,9 +13,9 @@ function createTodoController (database) {
 
   function doc2todo (doc) {
     return {
-      'id': doc.id,
-      'text': doc.text,
-      'completed': doc.completed
+      id: doc.id,
+      text: doc.text,
+      completed: doc.completed
     }
   }
 
@@ -38,9 +38,9 @@ function createTodoController (database) {
 
   function create (req, res) {
     let todo = {
-      'id': generateUUID(),
-      'text': req.body.text,
-      'completed': req.body.completed
+      id: generateUUID(),
+      text: req.body.text,
+      completed: req.body.completed
     }
 
     db.collection('todos').insertOne(todo)
@@ -54,9 +54,9 @@ function createTodoController (database) {
 
   function update (req, res) {
     db.collection('todos').updateOne(
-      { 'id': req.body.id },
+      { id: req.body.id },
       { $set: {
-        'text': req.body.text, 'completed': req.body.completed
+        text: req.body.text, completed: req.body.completed
       }})
     .then(r => {
       console.log('the todo with id ' + req.body.id + ' was updated')
@@ -73,7 +73,7 @@ function createTodoController (database) {
   }
 
   return {
-    'registerRoutes': registerRoutes
+    registerRoutes: registerRoutes
   }
 }
 
