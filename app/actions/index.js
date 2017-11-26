@@ -1,6 +1,8 @@
 import { createTodosService } from './todos.service'
+import { createUserService } from './user.service'
 
 let todosService = createTodosService()
+let userService = createUserService()
 
 export const hasLoggedIn = () => {
   return {
@@ -10,8 +12,15 @@ export const hasLoggedIn = () => {
 
 export function login (credentials) {
   return dispatch => {
-    window.sessionStorage.setItem('isLoggedIn', true)
-    dispatch(hasLoggedIn())
+    userService.login(credentials)
+    .then(isLoggedIn => {
+      if (isLoggedIn) {
+        window.sessionStorage.setItem('isLoggedIn', true)
+        dispatch(hasLoggedIn())
+      }
+
+      console.log('Could not login user.')
+    })
   }
 }
 
