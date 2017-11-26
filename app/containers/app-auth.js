@@ -4,16 +4,16 @@ import App from '../components/app'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    'isLoggedIn': state.user.isLoggedIn
+    isLoggedIn: state.user.isLoggedIn
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    'onLogin': () => {
+    onLogin: () => {
       dispatch(login())
     },
-    'onLogout': () => {
+    onLogout: () => {
       dispatch(logout())
     }
   }

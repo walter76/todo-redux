@@ -4,9 +4,9 @@ const todos = (state = [], action) => {
       return [
         ...state,
         {
-          'id': action.id,
-          'text': action.text,
-          'completed': action.completed
+          id: action.id,
+          text: action.text,
+          completed: action.completed
         }
       ]
     case 'TODO_UPDATED':

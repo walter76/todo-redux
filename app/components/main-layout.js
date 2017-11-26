@@ -13,7 +13,7 @@ const MainLayout = ({ children }) => {
 }
 
 MainLayout.propTypes = {
-  'children': PropTypes.node.isRequired
+  children: PropTypes.node.isRequired
 }
 
 export default MainLayout

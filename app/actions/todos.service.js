@@ -6,11 +6,11 @@ export function createTodosService () {
 
   function getAll () {
     let options = {
-      'method': 'GET',
-      'headers': {
+      method: 'GET',
+      headers: {
         'Content-Type': 'application/json; charset=utf-8'
       },
-      'cache': 'default'
+      cache: 'default'
     }
 
     let request = new window.Request(todosUri, options)
@@ -24,10 +24,10 @@ export function createTodosService () {
             console.log(response.statusText)
 
             resolve({
-              'success': false,
-              'status': response.status,
-              'statusText': response.statusText,
-              'items': []
+              success: false,
+              status: response.status,
+              statusText: response.statusText,
+              items: []
             })
           }
 
@@ -35,8 +35,8 @@ export function createTodosService () {
         })
         .then((json) => {
           resolve({
-            'success': true,
-            'items': json
+            success: true,
+            items: json
           })
         })
       })
@@ -46,12 +46,12 @@ export function createTodosService () {
     return new Promise(
       (resolve, reject) => {
         window.fetch(todosUri, {
-          'method': 'POST',
-          'headers': {
+          method: 'POST',
+          headers: {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json; charset=utf-8'
           },
-          'body': JSON.stringify(todo)
+          body: JSON.stringify(todo)
         })
         .then(response => response.json())
         .then(json => resolve(json))
@@ -63,12 +63,12 @@ export function createTodosService () {
     return new Promise(
       (resolve, reject) => {
         window.fetch(todosUri, {
-          'method': 'PUT',
-          'headers': {
+          method: 'PUT',
+          headers: {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json; charset=utf-8'
           },
-          'body': JSON.stringify(todo)
+          body: JSON.stringify(todo)
         })
         .then(response => response.json())
         .then(json => resolve(json))
@@ -77,8 +77,8 @@ export function createTodosService () {
   }
 
   return {
-    'getAll': getAll,
-    'create': create,
-    'update': update
+    getAll: getAll,
+    create: create,
+    update: update
   }
 }

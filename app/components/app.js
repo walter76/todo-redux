@@ -32,9 +32,9 @@ const App = ({ isLoggedIn, onLogin, onLogout }) => {
 }
 
 App.propTypes = {
-  'isLoggedIn': PropTypes.bool.isRequired,
-  'onLogin': PropTypes.func.isRequired,
-  'onLogout': PropTypes.func.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
+  onLogin: PropTypes.func.isRequired,
+  onLogout: PropTypes.func.isRequired
 }
 
 export default App

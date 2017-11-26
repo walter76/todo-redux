@@ -4,7 +4,7 @@ let todosService = createTodosService()
 
 export const hasLoggedIn = () => {
   return {
-    'type': 'HAS_LOGGED_IN'
+    type: 'HAS_LOGGED_IN'
   }
 }
 
@@ -17,7 +17,7 @@ export function login (credentials) {
 
 export const hasLoggedOut = () => {
   return {
-    'type': 'HAS_LOGGED_OUT'
+    type: 'HAS_LOGGED_OUT'
   }
 }
 
@@ -30,21 +30,21 @@ export function logout () {
 
 export const setVisibilityFilter = filter => {
   return {
-    'type': 'SET_VISIBILITY_FILTER',
+    type: 'SET_VISIBILITY_FILTER',
     filter
   }
 }
 
 export const todoUpdated = todo => {
   return {
-    'type': 'TODO_UPDATED',
+    type: 'TODO_UPDATED',
     todo
   }
 }
 
 export const receiveTodos = items => {
   return {
-    'type': 'RECEIVE_TODOS',
+    type: 'RECEIVE_TODOS',
     items
   }
 }
@@ -60,19 +60,19 @@ export function fetchTodos () {
 
 export const addTodo = todo => {
   return {
-    'type': 'ADD_TODO',
-    'id': todo.id,
-    'text': todo.text,
-    'completed': todo.completed
+    type: 'ADD_TODO',
+    id: todo.id,
+    text: todo.text,
+    completed: todo.completed
   }
 }
 
 export function createTodo (text) {
   return dispatch => {
     todosService.create({
-      'id': -1,
-      'text': text,
-      'completed': false
+      id: -1,
+      text: text,
+      completed: false
     })
     .then(todo => {
       dispatch(addTodo(todo))

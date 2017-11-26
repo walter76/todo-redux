@@ -2,21 +2,21 @@ const user = (state, action) => {
   if (state === undefined) {
     if (window.sessionStorage.getItem('isLoggedIn') === null) {
       return {
-        'isLoggedIn': false
+        isLoggedIn: false
       }
     }
 
     let isLoggedIn = window.sessionStorage.getItem('isLoggedIn') === 'true'
     return {
-      'isLoggedIn': isLoggedIn
+      isLoggedIn: isLoggedIn
     }
   }
 
   switch (action.type) {
     case 'HAS_LOGGED_IN':
-      return { 'isLoggedIn': true }
+      return { isLoggedIn: true }
     case 'HAS_LOGGED_OUT':
-      return { 'isLoggedIn': false }
+      return { isLoggedIn: false }
     default:
       return state
   }

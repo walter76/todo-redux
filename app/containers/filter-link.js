@@ -4,13 +4,13 @@ import Link from '../components/link'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    'active': ownProps.filter === state.visibilityFilter
+    active: ownProps.filter === state.visibilityFilter
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    'onClick': () => {
+    onClick: () => {
       dispatch(setVisibilityFilter(ownProps.filter))
     }
   }
