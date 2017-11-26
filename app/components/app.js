@@ -2,31 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import MainLayout from './main-layout'
-import Footer from './footer'
-import VisibleTodoList from '../containers/visible-todo-list'
-import AddTodo from '../containers/add-todo'
+import Login from './login'
+import TodoContent from './todo-content'
 
 const App = ({ isLoggedIn, onLogin, onLogout }) => {
   if (!isLoggedIn) {
     return (
       <MainLayout>
-        <button onClick={e => {
-          e.preventDefault()
-          onLogin()
-        }}>Login</button>
+        <Login onLogin={onLogin} />
       </MainLayout>
     )
   }
 
   return (
     <MainLayout>
-      <AddTodo />
-      <VisibleTodoList />
-      <Footer />
-      <button onClick={e => {
-        e.preventDefault()
-        onLogout()
-      }}>Logout</button>
+      <TodoContent onLogout={onLogout} />
     </MainLayout>
   )
 }
