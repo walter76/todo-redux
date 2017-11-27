@@ -9,7 +9,7 @@ import thunkMiddleware from 'redux-thunk'
 import todoApp from './reducers'
 import AppAuth from './containers/app-auth'
 
-import { fetchTodos } from './actions'
+import { fetchTodos } from './actions/todos'
 
 const store = createStore(
   todoApp,

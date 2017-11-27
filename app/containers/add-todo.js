@@ -2,7 +2,7 @@ import './add-todo.scss'
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { createTodo } from '../actions'
+import { createTodo } from '../actions/todos'
 
 let AddTodo = ({ dispatch }) => {
   let input
