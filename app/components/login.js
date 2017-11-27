@@ -1,3 +1,5 @@
+import './login.scss'
+
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -31,16 +33,18 @@ class Login extends React.Component {
     return (
       <form onSubmit={this.submit}>
         <input
+          className='login'
           ref={node => { this.username = node }}
           placeholder='Username'
           autoFocus
         /><br />
         <input
+          className='login'
           ref={node => { this.password = node }}
           type='password'
           placeholder='Password'
         /><br />
-        <button type='submit'>Login</button>
+        <button className='login' type='submit'>Login</button>
       </form>
     )
   }
