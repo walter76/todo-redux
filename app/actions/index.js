@@ -1,7 +1,5 @@
-import { createTodosService } from './todos.service'
+import { getAll, create, update } from './todos.service'
 import { login as loginUser } from './user.service'
-
-let todosService = createTodosService()
 
 export const hasLoggedIn = () => {
   return {
@@ -60,7 +58,7 @@ export const receiveTodos = items => {
 
 export function fetchTodos () {
   return dispatch => {
-    todosService.getAll()
+    getAll()
     .then(({success, items}) => {
       dispatch(receiveTodos(items))
     })
@@ -78,7 +76,7 @@ export const addTodo = todo => {
 
 export function createTodo (text) {
   return dispatch => {
-    todosService.create({
+    create({
       id: -1,
       text: text,
       completed: false
@@ -91,7 +89,7 @@ export function createTodo (text) {
 
 export function updateTodo (todo) {
   return dispatch => {
-    todosService.update(todo)
+    update(todo)
     .then(todo => {
       dispatch(todoUpdated(todo))
     })
