@@ -4,7 +4,8 @@ import App from '../components/app'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isLoggedIn: state.user.isLoggedIn
+    isLoggedIn: state.user.isLoggedIn,
+    error: state.user.error
   }
 }
 

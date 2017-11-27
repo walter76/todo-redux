@@ -44,6 +44,7 @@ class Login extends React.Component {
           type='password'
           placeholder='Password'
         /><br />
+        <div className='error'>{this.props.error}</div>
         <button className='login' type='submit'>Login</button>
       </form>
     )
@@ -51,7 +52,8 @@ class Login extends React.Component {
 }
 
 Login.propTypes = {
-  onLogin: PropTypes.func.isRequired
+  onLogin: PropTypes.func.isRequired,
+  error: PropTypes.string
 }
 
 export default Login

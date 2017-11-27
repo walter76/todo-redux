@@ -17,6 +17,11 @@ const user = (state, action) => {
       return { isLoggedIn: true }
     case 'HAS_LOGGED_OUT':
       return { isLoggedIn: false }
+    case 'NOT_LOGGED_IN':
+      return {
+        isLoggedIn: false,
+        error: 'Unable to login the user.'
+      }
     default:
       return state
   }

@@ -6,6 +6,12 @@ export const hasLoggedIn = () => {
   }
 }
 
+export const notLoggedIn = () => {
+  return {
+    type: 'NOT_LOGGED_IN'
+  }
+}
+
 export function login (credentials) {
   return dispatch => {
     loginUser(credentials)
@@ -16,7 +22,7 @@ export function login (credentials) {
         return
       }
 
-      console.log('Could not login user.')
+      dispatch(notLoggedIn())
     })
   }
 }

@@ -5,11 +5,11 @@ import MainLayout from './main-layout'
 import Login from './login'
 import TodoContent from './todo-content'
 
-const App = ({ isLoggedIn, onLogin, onLogout }) => {
+const App = ({ isLoggedIn, onLogin, onLogout, error }) => {
   if (!isLoggedIn) {
     return (
       <MainLayout>
-        <Login onLogin={onLogin} />
+        <Login onLogin={onLogin} error={error} />
       </MainLayout>
     )
   }
@@ -24,7 +24,8 @@ const App = ({ isLoggedIn, onLogin, onLogout }) => {
 App.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
   onLogin: PropTypes.func.isRequired,
-  onLogout: PropTypes.func.isRequired
+  onLogout: PropTypes.func.isRequired,
+  error: PropTypes.string
 }
 
 export default App
