@@ -2,12 +2,15 @@ import './main-layout.scss'
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 const MainLayout = ({ children }) => {
   return (
     <article>
       <h1>Dead-Simple ToDo App</h1>
-      {children}
+      <Router>
+        {children}
+      </Router>
     </article>
   )
 }
