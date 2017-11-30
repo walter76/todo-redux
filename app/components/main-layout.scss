@@ -2,7 +2,7 @@ $primary-color: #333;
 
 body {
     font-family: 'PT Sans', sans-serif;
-    font-size: 12px;
+    font-size: 0.9em;
 
     color: $primary-color;
 }
@@ -18,4 +18,11 @@ article {
 article h1 {
     font-size: 30px;
     line-height: 1.5em;
+}
+
+section {
+    display: block;
+
+    margin: 10px auto;
+    padding: 2px;
 }
