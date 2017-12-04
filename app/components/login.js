@@ -2,6 +2,7 @@ import './login.scss'
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 class Login extends React.Component {
   constructor (props) {
@@ -46,6 +47,7 @@ class Login extends React.Component {
         /><br />
         <div className='error'>{this.props.error}</div>
         <button className='login' type='submit'>Login</button>
+        <span>or</span>&nbsp;<Link to='/register'>Register</Link>
       </form>
     )
   }

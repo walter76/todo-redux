@@ -5,9 +5,11 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import todoApp from './reducers'
 import AppAuth from './containers/app-auth'
+import Register from './components/register'
 
 import { fetchTodos } from './actions/todos'
 
@@ -22,7 +24,12 @@ store.dispatch(fetchTodos())
 
 render(
   <Provider store={store}>
-    <AppAuth />
+    <Router>
+      <div>
+        <Route exact path='/' component={AppAuth} />
+        <Route exact path='/register' component={Register} />
+      </div>
+    </Router>
   </Provider>,
   document.getElementById('app')
 )
