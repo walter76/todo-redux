@@ -1,6 +1,7 @@
 import './register.scss'
 
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { register } from '../actions/user'
@@ -48,6 +49,11 @@ let Register = ({ onRegister, redirectToLogin }) => {
   )
 }
 
+Register.propTypes = {
+  onRegister: PropTypes.func.isRequired,
+  redirectToLogin: PropTypes.bool.isRequired
+}
+
 const mapStateToProps = (state, ownProps) => {
   return {
     redirectToLogin: state.user.redirectToLogin
@@ -62,9 +68,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-Register = connect(
+export default Register = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Register)
-
-export default Register

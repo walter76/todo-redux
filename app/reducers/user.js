@@ -9,7 +9,8 @@ const user = (state, action) => {
 
     let isLoggedIn = window.sessionStorage.getItem('isLoggedIn') === 'true'
     return {
-      isLoggedIn: isLoggedIn
+      isLoggedIn: isLoggedIn,
+      redirectToLogin: false
     }
   }
 
