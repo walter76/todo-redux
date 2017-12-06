@@ -1,4 +1,4 @@
-import { login as loginUser } from './user.service'
+import { login as loginUser, register as registerUser } from './user.service'
 
 export const hasLoggedIn = () => {
   return {
@@ -37,5 +37,22 @@ export function logout () {
   return dispatch => {
     window.sessionStorage.setItem('isLoggedIn', false)
     dispatch(hasLoggedOut())
+  }
+}
+
+export const redirectToLogin = () => {
+  return {
+    type: 'REDIRECT_TO_LOGIN'
+  }
+}
+
+export function register (credentials) {
+  return dispatch => {
+    registerUser(credentials)
+    .then(isRegistered => {
+      if (isRegistered) {
+        dispatch(redirectToLogin())
+      }
+    })
   }
 }

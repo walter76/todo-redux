@@ -24,3 +24,25 @@ export function login (credentials) {
     }
   )
 }
+
+export function register (credentials) {
+  return new Promise(
+    (resolve, reject) => {
+      window.fetch(userUri + '/register', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json; charset=utf-8'
+        },
+        body: JSON.stringify(credentials)
+      })
+      .then(response => {
+        if (response.status === 200) {
+          resolve(true)
+        } else if (response.status === 401) {
+          resolve(false)
+        }
+      })
+    }
+  )
+}

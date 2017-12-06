@@ -25,7 +25,7 @@ MongoClient.connect(MONGODB_URI, (err, database) => {
 
   let controllerRegistry = new ControllerRegistry()
   controllerRegistry.add(() => createTodoController(database))
-  controllerRegistry.add(createUserController)
+  controllerRegistry.add(() => createUserController(database))
   controllerRegistry.run(app)
 
   app.listen(PORT, () => console.log(`Listening on ${PORT}`))

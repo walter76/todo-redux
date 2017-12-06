@@ -1,10 +1,21 @@
 import './register.scss'
 
 import React from 'react'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import { register } from '../actions/user'
 
 import MainLayout from './main-layout'
 
-const Register = () => {
+let Register = ({ onRegister, redirectToLogin }) => {
+  if (redirectToLogin) {
+    return (
+      <Redirect to={{
+        pathname: '/'
+      }} />
+    )
+  }
+
   let username
   let password
 
@@ -13,8 +24,10 @@ const Register = () => {
       <form onSubmit={(e) => {
         e.preventDefault()
 
-        console.log(username.value)
-        console.log(password.value)
+        onRegister({
+          username: username.value,
+          password: password.value
+        })
       }}>
         <input
           className='register'
@@ -34,5 +47,24 @@ const Register = () => {
     </MainLayout>
   )
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    redirectToLogin: state.user.redirectToLogin
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onRegister: (credentials) => {
+      dispatch(register(credentials))
+    }
+  }
+}
+
+Register = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Register)
 
 export default Register

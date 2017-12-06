@@ -2,7 +2,8 @@ const user = (state, action) => {
   if (state === undefined) {
     if (window.sessionStorage.getItem('isLoggedIn') === null) {
       return {
-        isLoggedIn: false
+        isLoggedIn: false,
+        redirectToLogin: false
       }
     }
 
@@ -21,6 +22,11 @@ const user = (state, action) => {
       return {
         isLoggedIn: false,
         error: 'Unable to login the user.'
+      }
+    case 'REDIRECT_TO_LOGIN':
+      return {
+        isLoggedIn: false,
+        redirectToLogin: true
       }
     default:
       return state
