@@ -1,3 +1,5 @@
+import { post } from './common'
+
 const todosUri =
   window.location.protocol + '//' +
   window.location.host +
@@ -44,14 +46,7 @@ export function getAll () {
 export function create (todo) {
   return new Promise(
     (resolve, reject) => {
-      window.fetch(todosUri, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json, text/plain, */*',
-          'Content-Type': 'application/json; charset=utf-8'
-        },
-        body: JSON.stringify(todo)
-      })
+      post(todosUri, '', todo)
       .then(response => response.json())
       .then(json => resolve(json))
     }
