@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 
 const ControllerRegistry = require('./controller-registry')
-const createTodoController = require('./todo-controller')
+const registerTodoRoutes = require('./todo-controller')
 const createUserController = require('./user-controller')
 
 const PORT = process.env.PORT || 5000
@@ -23,8 +23,9 @@ MongoClient.connect(MONGODB_URI, (err, database) => {
     return console.log(err)
   }
 
+  registerTodoRoutes(database, app)
+
   let controllerRegistry = new ControllerRegistry()
-  controllerRegistry.add(() => createTodoController(database))
   controllerRegistry.add(() => createUserController(database))
   controllerRegistry.run(app)
 
