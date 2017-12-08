@@ -16,7 +16,7 @@ function doc2todo (doc) {
   }
 }
 
-function get (db, req, res, next) {
+function get (db, req, res) {
   db.collection('todos').find().toArray((err, results) => {
     if (err) {
       console.error('Unable to query database for todos. Reason: ')
@@ -64,7 +64,7 @@ function update (db, req, res) {
 }
 
 module.exports = (db, app) => {
-  app.get('/api/todos', (req, res, next) => get(db, req, res, next))
+  app.get('/api/todos', (req, res) => get(db, req, res))
   app.post('/api/todos', (req, res) => create(db, req, res))
   app.put('/api/todos', (req, res) => update(db, req, res))
 }
