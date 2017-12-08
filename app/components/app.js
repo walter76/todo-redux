@@ -1,31 +1,39 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 import MainLayout from './main-layout'
 import Login from './login'
 import TodoContent from './todo-content'
 
-const App = ({ isLoggedIn, onLogin, onLogout, error }) => {
+const AppComponent = ({ isLoggedIn }) => {
   if (!isLoggedIn) {
     return (
       <MainLayout>
-        <Login onLogin={onLogin} error={error} />
+        <Login />
       </MainLayout>
     )
   }
 
   return (
     <MainLayout>
-      <TodoContent onLogout={onLogout} />
+      <TodoContent />
     </MainLayout>
   )
 }
 
-App.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired,
-  onLogin: PropTypes.func.isRequired,
-  onLogout: PropTypes.func.isRequired,
-  error: PropTypes.string
+AppComponent.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    isLoggedIn: state.user.isLoggedIn
+  }
+}
+
+const App = connect(
+  mapStateToProps
+)(AppComponent)
 
 export default App

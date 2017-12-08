@@ -1,28 +1,14 @@
 import { connect } from 'react-redux'
-import { login, logout } from '../actions/user'
 import App from '../components/app'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isLoggedIn: state.user.isLoggedIn,
-    error: state.user.error
-  }
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    onLogin: (credentials) => {
-      dispatch(login(credentials))
-    },
-    onLogout: () => {
-      dispatch(logout())
-    }
+    isLoggedIn: state.user.isLoggedIn
   }
 }
 
 const AppAuth = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(App)
 
 export default AppAuth

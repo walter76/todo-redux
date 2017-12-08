@@ -3,8 +3,11 @@ import './login.scss'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-class Login extends React.Component {
+import { login } from '../actions/user'
+
+class LoginComponent extends React.Component {
   constructor (props) {
     super(props)
 
@@ -53,9 +56,28 @@ class Login extends React.Component {
   }
 }
 
-Login.propTypes = {
+LoginComponent.propTypes = {
   onLogin: PropTypes.func.isRequired,
   error: PropTypes.string
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    error: state.user.error
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onLogin: (credentials) => {
+      dispatch(login(credentials))
+    }
+  }
+}
+
+const Login = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginComponent)
 
 export default Login
