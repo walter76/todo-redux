@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 
 import MainLayout from './main-layout'
 import Login from './login'
@@ -17,9 +17,12 @@ const AppView = ({ isLoggedIn }) => {
             return (<TodoContent />)
           }
 
-          return (<Login />)
+          return (
+            <Redirect to={{ pathname: '/login' }} />
+          )
         }} />
         <Route exact path='/register' component={Register} />
+        <Route exact path='/login' component={Login} />
       </MainLayout>
     </Router>
   )

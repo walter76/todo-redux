@@ -2,7 +2,7 @@ import './login.scss'
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { login } from '../actions/user'
@@ -34,6 +34,12 @@ class LoginView extends React.Component {
   }
 
   render () {
+    if (this.props.isLoggedIn) {
+      return (
+        <Redirect to={{ pathname: '/' }} />
+      )
+    }
+
     return (
       <form onSubmit={this.submit}>
         <input
@@ -58,11 +64,13 @@ class LoginView extends React.Component {
 
 LoginView.propTypes = {
   onLogin: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
   error: PropTypes.string
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    isLoggedIn: state.user.isLoggedIn,
     error: state.user.error
   }
 }
