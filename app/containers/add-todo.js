@@ -4,7 +4,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { createTodo } from '../actions/todos'
 
-let AddTodo = ({ dispatch }) => {
+const AddTodoView = ({ dispatch }) => {
   let input
 
   return (
@@ -34,4 +34,6 @@ let AddTodo = ({ dispatch }) => {
   )
 }
 
-export default AddTodo = connect()(AddTodo)
+const AddTodo = connect()(AddTodoView)
+
+export default AddTodo

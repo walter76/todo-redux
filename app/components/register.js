@@ -8,7 +8,7 @@ import { register } from '../actions/user'
 
 import MainLayout from './main-layout'
 
-let Register = ({ onRegister, redirectToLogin }) => {
+const RegisterView = ({ onRegister, redirectToLogin }) => {
   if (redirectToLogin) {
     return (
       <Redirect to={{
@@ -49,7 +49,7 @@ let Register = ({ onRegister, redirectToLogin }) => {
   )
 }
 
-Register.propTypes = {
+RegisterView.propTypes = {
   onRegister: PropTypes.func.isRequired,
   redirectToLogin: PropTypes.bool.isRequired
 }
@@ -68,7 +68,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-export default Register = connect(
+const Register = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Register)
+)(RegisterView)
+
+export default Register

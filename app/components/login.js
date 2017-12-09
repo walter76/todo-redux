@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 
 import { login } from '../actions/user'
 
-class LoginComponent extends React.Component {
+class LoginView extends React.Component {
   constructor (props) {
     super(props)
 
@@ -56,7 +56,7 @@ class LoginComponent extends React.Component {
   }
 }
 
-LoginComponent.propTypes = {
+LoginView.propTypes = {
   onLogin: PropTypes.func.isRequired,
   error: PropTypes.string
 }
@@ -78,6 +78,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 const Login = connect(
   mapStateToProps,
   mapDispatchToProps
-)(LoginComponent)
+)(LoginView)
 
 export default Login
