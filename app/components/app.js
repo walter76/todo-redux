@@ -6,23 +6,22 @@ import MainLayout from './main-layout'
 import Login from './login'
 import TodoContent from './todo-content'
 
-const AppComponent = ({ isLoggedIn }) => {
-  if (!isLoggedIn) {
-    return (
-      <MainLayout>
-        <Login />
-      </MainLayout>
-    )
+const AppView = ({ isLoggedIn }) => {
+  let content = null
+  if (isLoggedIn) {
+    content = <TodoContent />
+  } else {
+    content = <Login />
   }
 
   return (
     <MainLayout>
-      <TodoContent />
+      {content}
     </MainLayout>
   )
 }
 
-AppComponent.propTypes = {
+AppView.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired
 }
 
@@ -34,6 +33,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const App = connect(
   mapStateToProps
-)(AppComponent)
+)(AppView)
 
 export default App
