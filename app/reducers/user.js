@@ -18,7 +18,10 @@ const user = (state, action) => {
     case 'HAS_LOGGED_IN':
       return { isLoggedIn: true }
     case 'HAS_LOGGED_OUT':
-      return { isLoggedIn: false }
+      return {
+        isLoggedIn: false,
+        redirectToLogin: false
+      }
     case 'NOT_LOGGED_IN':
       return {
         isLoggedIn: false,

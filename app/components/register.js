@@ -6,8 +6,6 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { register } from '../actions/user'
 
-import MainLayout from './main-layout'
-
 const RegisterView = ({ onRegister, redirectToLogin }) => {
   if (redirectToLogin) {
     return (
@@ -21,31 +19,29 @@ const RegisterView = ({ onRegister, redirectToLogin }) => {
   let password
 
   return (
-    <MainLayout>
-      <form onSubmit={(e) => {
-        e.preventDefault()
+    <form onSubmit={(e) => {
+      e.preventDefault()
 
-        onRegister({
-          username: username.value,
-          password: password.value
-        })
-      }}>
-        <input
-          className='register'
-          ref={node => { username = node }}
-          placeholder='Username'
-          autoFocus
-        /><br />
-        <input
-          className='register'
-          ref={node => { password = node }}
-          type='password'
-          placeholder='Password'
-        /><br />
-        <div className='error' />
-        <button className='register' type='submit'>Register</button>
-      </form>
-    </MainLayout>
+      onRegister({
+        username: username.value,
+        password: password.value
+      })
+    }}>
+      <input
+        className='register'
+        ref={node => { username = node }}
+        placeholder='Username'
+        autoFocus
+      /><br />
+      <input
+        className='register'
+        ref={node => { password = node }}
+        type='password'
+        placeholder='Password'
+      /><br />
+      <div className='error' />
+      <button className='register' type='submit'>Register</button>
+    </form>
   )
 }
 

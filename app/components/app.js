@@ -1,23 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import MainLayout from './main-layout'
 import Login from './login'
 import TodoContent from './todo-content'
+import Register from './register'
 
 const AppView = ({ isLoggedIn }) => {
-  let content = null
-  if (isLoggedIn) {
-    content = <TodoContent />
-  } else {
-    content = <Login />
-  }
-
   return (
-    <MainLayout>
-      {content}
-    </MainLayout>
+    <Router>
+      <MainLayout>
+        <Route exact path='/' render={() => {
+          if (isLoggedIn) {
+            return (<TodoContent />)
+          }
+
+          return (<Login />)
+        }} />
+        <Route exact path='/register' component={Register} />
+      </MainLayout>
+    </Router>
   )
 }
 
