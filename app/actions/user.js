@@ -36,16 +36,18 @@ export function logout () {
   }
 }
 
-export const redirectToLogin = () => {
+export const hasRegistered = (username) => {
   return {
-    type: 'REDIRECT_TO_LOGIN'
+    type: 'HAS_REGISTERED',
+    username
   }
 }
 
+// TODO clean this up to return username returned from server
 export const register = credentials => dispatch =>
   registerUser(credentials)
   .then(isRegistered => {
     if (isRegistered) {
-      return dispatch(redirectToLogin())
+      return dispatch(hasRegistered(credentials.username))
     }
   })

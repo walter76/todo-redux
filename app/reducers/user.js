@@ -2,15 +2,13 @@ const user = (state, action) => {
   if (state === undefined) {
     if (window.sessionStorage.getItem('isLoggedIn') === null) {
       return {
-        isLoggedIn: false,
-        redirectToLogin: false
+        isLoggedIn: false
       }
     }
 
     let isLoggedIn = window.sessionStorage.getItem('isLoggedIn') === 'true'
     return {
-      isLoggedIn: isLoggedIn,
-      redirectToLogin: false
+      isLoggedIn: isLoggedIn
     }
   }
 
@@ -19,18 +17,17 @@ const user = (state, action) => {
       return { isLoggedIn: true }
     case 'HAS_LOGGED_OUT':
       return {
-        isLoggedIn: false,
-        redirectToLogin: false
+        isLoggedIn: false
       }
     case 'NOT_LOGGED_IN':
       return {
         isLoggedIn: false,
         error: 'Unable to login the user.'
       }
-    case 'REDIRECT_TO_LOGIN':
+    case 'HAS_REGISTERED':
       return {
         isLoggedIn: false,
-        redirectToLogin: true
+        username: action.username
       }
     default:
       return state
