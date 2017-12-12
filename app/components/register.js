@@ -3,18 +3,9 @@ import './register.scss'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 import { register } from '../actions/user'
 
-const RegisterView = ({ onRegister, redirectToLogin }) => {
-  if (redirectToLogin) {
-    return (
-      <Redirect to={{
-        pathname: '/'
-      }} />
-    )
-  }
-
+const RegisterView = ({ register, history }) => {
   let username
   let password
 
@@ -22,10 +13,10 @@ const RegisterView = ({ onRegister, redirectToLogin }) => {
     <form onSubmit={(e) => {
       e.preventDefault()
 
-      onRegister({
+      register({
         username: username.value,
         password: password.value
-      })
+      }).then(() => history.push('/login'))
     }}>
       <input
         className='register'
@@ -46,27 +37,15 @@ const RegisterView = ({ onRegister, redirectToLogin }) => {
 }
 
 RegisterView.propTypes = {
-  onRegister: PropTypes.func.isRequired,
-  redirectToLogin: PropTypes.bool.isRequired
-}
-
-const mapStateToProps = (state, ownProps) => {
-  return {
-    redirectToLogin: state.user.redirectToLogin
-  }
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    onRegister: (credentials) => {
-      dispatch(register(credentials))
-    }
-  }
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
+  register: PropTypes.func.isRequired
 }
 
 const Register = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  null,
+  { register }
 )(RegisterView)
 
 export default Register

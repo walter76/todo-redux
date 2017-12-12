@@ -42,13 +42,10 @@ export const redirectToLogin = () => {
   }
 }
 
-export function register (credentials) {
-  return dispatch => {
-    registerUser(credentials)
-    .then(isRegistered => {
-      if (isRegistered) {
-        dispatch(redirectToLogin())
-      }
-    })
-  }
-}
+export const register = credentials => dispatch =>
+  registerUser(credentials)
+  .then(isRegistered => {
+    if (isRegistered) {
+      return dispatch(redirectToLogin())
+    }
+  })
