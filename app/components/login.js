@@ -2,7 +2,7 @@ import './login.scss'
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { login } from '../actions/user'
@@ -24,22 +24,17 @@ class LoginView extends React.Component {
       return
     }
 
-    this.props.onLogin({
+    this.props.login({
       username: this.username.value.trim(),
       password: this.password.value.trim()
     })
+    .then(() => this.props.history.push('/'))
 
     this.username.value = ''
     this.password.value = ''
   }
 
   render () {
-    if (this.props.isLoggedIn) {
-      return (
-        <Redirect to={{ pathname: '/' }} />
-      )
-    }
-
     return (
       <form onSubmit={this.submit}>
         <input
@@ -63,29 +58,22 @@ class LoginView extends React.Component {
 }
 
 LoginView.propTypes = {
-  onLogin: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
+  login: PropTypes.func.isRequired,
   error: PropTypes.string
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isLoggedIn: state.user.isLoggedIn,
     error: state.user.error
-  }
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    onLogin: (credentials) => {
-      dispatch(login(credentials))
-    }
   }
 }
 
 const Login = connect(
   mapStateToProps,
-  mapDispatchToProps
+  { login }
 )(LoginView)
 
 export default Login

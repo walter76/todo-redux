@@ -12,20 +12,16 @@ export const notLoggedIn = () => {
   }
 }
 
-export function login (credentials) {
-  return dispatch => {
-    loginUser(credentials)
-    .then(isLoggedIn => {
-      if (isLoggedIn) {
-        window.sessionStorage.setItem('isLoggedIn', true)
-        dispatch(hasLoggedIn())
-        return
-      }
-
-      dispatch(notLoggedIn())
-    })
-  }
-}
+export const login = credentials => dispatch =>
+  loginUser(credentials)
+  .then(isLoggedIn => {
+    if (isLoggedIn) {
+      window.sessionStorage.setItem('isLoggedIn', true)
+      return dispatch(hasLoggedIn())
+    } else {
+      return dispatch(notLoggedIn())
+    }
+  })
 
 export const hasLoggedOut = () => {
   return {
