@@ -17,11 +17,13 @@ app.use(express.static(path.join(__dirname, '../public')))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-MongoClient.connect(MONGODB_URI, (err, database) => {
+MongoClient.connect(MONGODB_URI, (err, client) => {
   if (err) {
     return console.log(err)
   }
 
+  const database = client.db('ds-todo-db')
+  
   registerTodoRoutes(database, app)
   registerUserRoutes(database, app)
 

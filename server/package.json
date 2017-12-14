@@ -1,0 +1,22 @@
+{
+  "name": "todo-redux-server",
+  "version": "1.0.0",
+  "description": "server for the todo-redux demo",
+  "license": "SEE LICENSE IN LICENSE",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/walter76/todo-redux.git"
+  },
+  "keywords": [],
+  "author": "walter <walter.stocker@gmx.de>",
+  "homepage": "https://github.com/walter76/todo-redux",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongodb": "^3.0.0-rc0"
+  }
+}
