@@ -6,7 +6,6 @@
   "main": "server/index.js",
   "scripts": {
     "lint:js": "standard",
-    "dev-server": "node server/index.js",
     "dev-client": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env development\"",
     "build": "webpack --env production",
     "postinstall": "npm run build"
@@ -23,10 +22,7 @@
     ]
   },
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "express": "^4.16.2",
     "immutable": "^3.8.2",
-    "mongodb": "^2.2.33",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-redux": "^5.0.6",
