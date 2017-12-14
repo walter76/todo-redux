@@ -1,0 +1,54 @@
+{
+  "name": "todo-app",
+  "version": "0.0.1",
+  "description": "todo app for demo purpose",
+  "license": "SEE LICENSE IN LICENSE",
+  "main": "index.js",
+  "scripts": {
+    "lint:js": "standard",
+    "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env development\"",
+    "build": "webpack --env production",
+    "postinstall": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/walter76/todo-redux.git"
+  },
+  "author": "walter <walter.stocker@gmx.de>",
+  "homepage": "https://github.com/walter76/todo-redux",
+  "standard": {
+    "ignore": [
+      "**/build/",
+      "**/public/"
+    ]
+  },
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.7.2",
+    "nodemon": "^1.12.7",
+    "path": "^0.12.7",
+    "redux-devtools": "^3.4.1",
+    "redux-devtools-extension": "^2.13.2",
+    "sass-loader": "^6.0.6",
+    "standard": "^10.0.3",
+    "standard-loader": "^6.0.1",
+    "style-loader": "^0.19.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7",
+    "webpack-merge": "^4.1.1"
+  }
+}
