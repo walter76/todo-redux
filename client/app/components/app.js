@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 
 import MainLayout from './main-layout'
-import Login from './login'
+import LoginPage from './pages/login-page'
+
 import TodoContent from './todo-content'
 import Register from './register'
 
@@ -22,7 +23,7 @@ const AppView = ({ isLoggedIn }) => {
           )
         }} />
         <Route exact path='/register' component={Register} />
-        <Route exact path='/login' component={Login} />
+        <Route exact path='/login' component={LoginPage} />
       </MainLayout>
     </Router>
   )

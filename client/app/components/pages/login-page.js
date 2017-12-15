@@ -1,13 +1,13 @@
-import './login.scss'
+import './login-page.scss'
 
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { login } from '../actions/user'
+import { login } from '../../actions/user'
 
-class LoginView extends React.Component {
+class LoginPage extends React.Component {
   constructor (props) {
     super(props)
 
@@ -57,7 +57,7 @@ class LoginView extends React.Component {
   }
 }
 
-LoginView.propTypes = {
+LoginPage.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
   }).isRequired,
@@ -71,9 +71,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const Login = connect(
-  mapStateToProps,
-  { login }
-)(LoginView)
-
-export default Login
+export default connect(mapStateToProps, { login })(LoginPage)
