@@ -2,9 +2,9 @@ import './login-page.scss'
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
+import LoginForm from '../forms/login-form'
 import { login } from '../../actions/user'
 
 class LoginPage extends React.Component {
@@ -14,45 +14,17 @@ class LoginPage extends React.Component {
     this.submit = this.submit.bind(this)
   }
 
-  submit (e) {
-    e.preventDefault()
-
-    if (!this.username.value.trim()) {
-      return
-    }
-    if (!this.password.value.trim()) {
-      return
-    }
-
+  submit (data) {
     this.props.login({
-      username: this.username.value.trim(),
-      password: this.password.value.trim()
+      username: data.username.trim(),
+      password: data.password.trim()
     })
     .then(() => this.props.history.push('/'))
-
-    this.username.value = ''
-    this.password.value = ''
   }
 
   render () {
     return (
-      <form onSubmit={this.submit}>
-        <input
-          className='login'
-          ref={node => { this.username = node }}
-          placeholder='Username'
-          autoFocus
-        /><br />
-        <input
-          className='login'
-          ref={node => { this.password = node }}
-          type='password'
-          placeholder='Password'
-        /><br />
-        <div className='error'>{this.props.error}</div>
-        <button className='login' type='submit'>Login</button>
-        <span>or</span>&nbsp;<Link to='/register'>Register</Link>
-      </form>
+      <LoginForm submit={this.submit} />
     )
   }
 }
