@@ -1,6 +1,9 @@
+import 'semantic-ui-css/semantic.min.css'
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import { Form, Button } from 'semantic-ui-react'
 
 class LoginForm extends React.Component {
   constructor (props) {
@@ -49,28 +52,33 @@ class LoginForm extends React.Component {
     const { data, errors } = this.state
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name='username'
-          className='login'
-          placeholder='guest@guest.de'
-          value={data.username}
-          onChange={this.onChange}
-          autoFocus
-        /><br />
-        {errors.username && <div>{errors.username}</div>}
-        <input
-          name='password'
-          className='login'
-          type='password'
-          placeholder='secret'
-          value={data.password}
-          onChange={this.onChange}
-        /><br />
-        {errors.password && <div>{errors.password}</div>}
-        <button className='login' type='submit'>Login</button>
+      <Form onSubmit={this.onSubmit}>
+        <Form.Field error={!!errors.username}>
+          <label htmlFor='username'>Username</label>
+          <input
+            id='username'
+            name='username'
+            placeholder='guest@guest.de'
+            value={data.username}
+            onChange={this.onChange}
+          />
+          {errors.username && <div>{errors.username}</div>}
+        </Form.Field>
+        <Form.Field error={!!errors.password}>
+          <label htmlFor='password'>Password</label>
+          <input
+            type='password'
+            id='password'
+            name='password'
+            placeholder='secret'
+            value={data.password}
+            onChange={this.onChange}
+          />
+          {errors.password && <div>{errors.password}</div>}
+        </Form.Field>
+        <Button primary>Login</Button>
         <span>or</span>&nbsp;<Link to='/register'>Register</Link>
-      </form>
+      </Form>
     )
   }
 }

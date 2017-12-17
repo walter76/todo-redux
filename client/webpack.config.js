@@ -37,6 +37,10 @@ const commonConfig = merge([
           include: PATHS.app,
           exclude: /(node_modules|bower_components)/,
           loader: 'babel-loader'
+        },
+        {
+          test: /\.(eot|svg|ttf|woff|woff2|png)$/,
+          loader: 'file-loader'
         }
       ]
     },
