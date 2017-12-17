@@ -4,6 +4,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Form, Button } from 'semantic-ui-react'
+import InlineError from '../messages/inline-error'
 
 class LoginForm extends React.Component {
   constructor (props) {
@@ -62,7 +63,7 @@ class LoginForm extends React.Component {
             value={data.username}
             onChange={this.onChange}
           />
-          {errors.username && <div>{errors.username}</div>}
+          {errors.username && <InlineError text={errors.username} />}
         </Form.Field>
         <Form.Field error={!!errors.password}>
           <label htmlFor='password'>Password</label>
@@ -74,7 +75,7 @@ class LoginForm extends React.Component {
             value={data.password}
             onChange={this.onChange}
           />
-          {errors.password && <div>{errors.password}</div>}
+          {errors.password && <InlineError text={errors.password} />}
         </Form.Field>
         <Button primary>Login</Button>
         <span>or</span>&nbsp;<Link to='/register'>Register</Link>
