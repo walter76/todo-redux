@@ -6,8 +6,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import MainLayout from './main-layout'
 import LoginPage from './pages/login-page'
 import HomePage from './pages/home-page'
+import TodoPage from './pages/todo-page'
 
-import TodoContent from './todo-content'
 import Register from './register'
 
 const AppView = ({ isLoggedIn }) => {
@@ -16,7 +16,7 @@ const AppView = ({ isLoggedIn }) => {
       <MainLayout>
         <Route exact path='/' render={() => {
           if (isLoggedIn) {
-            return (<TodoContent />)
+            return (<TodoPage />)
           }
 
           return (<HomePage />)

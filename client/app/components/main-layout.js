@@ -5,8 +5,8 @@ import PropTypes from 'prop-types'
 
 const MainLayout = ({ children }) => {
   return (
-    <div class='ui text container'>
-      <h1 class='ui header'>Dead-Simple ToDo App</h1>
+    <div className='ui text container'>
+      <h1 className='ui header'>Dead-Simple ToDo App</h1>
       {children}
     </div>
   )

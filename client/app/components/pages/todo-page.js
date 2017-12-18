@@ -2,12 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { logout } from '../actions/user'
-import Footer from './footer'
-import VisibleTodoList from '../containers/visible-todo-list'
-import AddTodo from '../containers/add-todo'
+import { logout } from '../../actions/user'
+import Footer from '../footer'
+import VisibleTodoList from '../../containers/visible-todo-list'
+import AddTodo from '../../containers/add-todo'
 
-const TodoContentComponent = ({ onLogout }) => {
+const TodoPage = ({ onLogout }) => {
   return (
     <div>
       <AddTodo />
@@ -21,7 +21,7 @@ const TodoContentComponent = ({ onLogout }) => {
   )
 }
 
-TodoContentComponent.propTypes = {
+TodoPage.propTypes = {
   onLogout: PropTypes.func.isRequired
 }
 
@@ -37,9 +37,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-const TodoContent = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(TodoContentComponent)
-
-export default TodoContent
+)(TodoPage)

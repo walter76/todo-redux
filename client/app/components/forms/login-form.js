@@ -33,7 +33,7 @@ class LoginForm extends React.Component {
       errors.password = 'Please enter a valid password.'
     }
 
-    if (Object.keys(errors)) {
+    if (Object.keys(errors).length > 0) {
       this.setState({ errors: errors })
       return
     }
