@@ -1,15 +1,14 @@
-import './add-todo.scss'
-
 import React from 'react'
 import { connect } from 'react-redux'
-import { createTodo } from '../actions/todos'
+import { createTodo } from '../../actions/todos'
+import { Form, Button } from 'semantic-ui-react'
 
 const AddTodoView = ({ dispatch }) => {
   let input
 
   return (
     <section>
-      <form
+      <Form
         onSubmit={e => {
           e.preventDefault()
           if (!input.value.trim()) {
@@ -19,17 +18,18 @@ const AddTodoView = ({ dispatch }) => {
           input.value = ''
         }}
       >
-        <input
-          ref={node => {
-            input = node
-          }}
-          placeholder='My Next ToDo Item'
-          autoFocus
-        />
-        <button type='submit'>
-          Add Todo
-        </button>
-      </form>
+        <Form.Field>
+          <input
+            id='todo'
+            name='todo'
+            ref={node => {
+              input = node
+            }}
+            placeholder='My Next ToDo Item'
+          />
+        </Form.Field>
+        <Button primary>Add Todo</Button>
+      </Form>
     </section>
   )
 }

@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { logout } from '../../actions/user'
 import Footer from '../footer'
 import VisibleTodoList from '../../containers/visible-todo-list'
-import AddTodo from '../../containers/add-todo'
+import AddTodo from '../todos/add-todo'
 
 const TodoPage = ({ onLogout }) => {
   return (
