@@ -1,14 +1,14 @@
-import './main-layout.scss'
+import 'semantic-ui-css/semantic.min.css'
 
 import React from 'react'
 import PropTypes from 'prop-types'
 
 const MainLayout = ({ children }) => {
   return (
-    <article>
-      <h1>Dead-Simple ToDo App</h1>
+    <div class='ui text container'>
+      <h1 class='ui header'>Dead-Simple ToDo App</h1>
       {children}
-    </article>
+    </div>
   )
 }
 
