@@ -2,6 +2,7 @@ import React from 'react'
 import { Form, Button } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import InlineError from '../messages/inline-error'
 
 import { createTodo } from '../../actions/todos'
 
@@ -12,7 +13,8 @@ class AddTodo extends React.Component {
     this.state = {
       data: {
         todo: ''
-      }
+      },
+      errors: {}
     }
 
     this.onSubmit = this.onSubmit.bind(this)
@@ -25,13 +27,17 @@ class AddTodo extends React.Component {
     const { todo } = this.state.data
 
     if (!todo.trim()) {
+      this.setState({
+        errors: { todo: 'Please add a valid todo item before submitting.' }
+      })
       return
     }
 
     this.props.dispatch(createTodo(todo.trim()))
 
     this.setState({
-      data: { todo: '' }
+      data: { todo: '' },
+      errors: {}
     })
   }
 
@@ -42,19 +48,20 @@ class AddTodo extends React.Component {
   }
 
   render () {
-    const { todo } = this.state.data
+    const { data, errors } = this.state
 
     return (
       <section>
         <Form onSubmit={this.onSubmit}>
-          <Form.Field>
+          <Form.Field error={!!errors.todo}>
             <input
               id='todo'
               name='todo'
               placeholder='My Next ToDo Item'
-              value={todo}
+              value={data.todo}
               onChange={this.onChange}
             />
+            {errors.todo && <InlineError text={errors.todo} />}
           </Form.Field>
           <Button primary>Add Todo</Button>
         </Form>
