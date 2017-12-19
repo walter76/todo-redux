@@ -3,15 +3,15 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { logout } from '../../actions/user'
-import Footer from '../footer'
-import VisibleTodoList from '../../containers/visible-todo-list'
 import AddTodo from '../todos/add-todo'
+import FilteredTodoList from '../todos/filtered-todo-list'
+import Footer from '../footer'
 
 const TodoPage = ({ onLogout }) => {
   return (
     <div>
       <AddTodo />
-      <VisibleTodoList />
+      <FilteredTodoList />
       <Footer />
       <button onClick={e => {
         e.preventDefault()
