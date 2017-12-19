@@ -2,7 +2,8 @@ import './todo-list.scss'
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import Todo from '../todo'
+
+import Todo from './todo'
 
 const TodoList = ({ todos, onTodoClick }) => (
   <section className='todo-list'>
