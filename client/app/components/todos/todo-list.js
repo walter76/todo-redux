@@ -1,13 +1,17 @@
+import './todo-list.scss'
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import Todo from '../todo'
 
 const TodoList = ({ todos, onTodoClick }) => (
-  <section>
-    <div role='list' className='ui selection middle aligned celled list'>
-      {todos.map(todo => (
-        <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo)} />
-      ))}
+  <section className='todo-list'>
+    <div className='ui segment'>
+      <div role='list' className='ui selection divided relaxed list'>
+        {todos.map(todo => (
+          <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo)} />
+        ))}
+      </div>
     </div>
     <div className='hint'>*) Click on a item to cross it off your list.</div>
   </section>
