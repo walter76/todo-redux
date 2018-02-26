@@ -10,25 +10,21 @@ import TodoPage from './pages/todo-page'
 
 import Register from './register'
 
-const AppView = ({ isLoggedIn }) => {
-  return (
-    <Router>
-      <MainLayout>
-        <Route exact path='/' render={() => {
-          if (isLoggedIn) {
-            return (<TodoPage />)
-          }
+const App = ({ isLoggedIn }) => (
+  <Router>
+    <MainLayout>
+      <Route
+        exact
+        path='/'
+        render={() => (isLoggedIn ? <TodoPage /> : <HomePage />)}
+      />
+      <Route exact path='/register' component={Register} />
+      <Route exact path='/login' component={LoginPage} />
+    </MainLayout>
+  </Router>
+)
 
-          return (<HomePage />)
-        }} />
-        <Route exact path='/register' component={Register} />
-        <Route exact path='/login' component={LoginPage} />
-      </MainLayout>
-    </Router>
-  )
-}
-
-AppView.propTypes = {
+App.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired
 }
 
@@ -38,8 +34,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const App = connect(
-  mapStateToProps
-)(AppView)
-
-export default App
+export default connect(mapStateToProps)(App)
