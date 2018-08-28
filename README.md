@@ -1,5 +1,7 @@
 # todo-redux
 
+This project has been moved to [https://gitlab.com/walter76/todo-redux](https://gitlab.com/walter76/todo-redux).
+
 This is a sample application to demonstrate how deployment of a
 "real-world application" to Heroku could look like.
 
